@@ -1,0 +1,64 @@
+.login-dialog {
+    width: 35%;
+    max-width: 40%;
+    margin-top: 3%;
+}
+.register-dialog {
+    max-width: 40%;
+    margin-top: 3%;
+    width: 35%;
+}
+.col-lg-12 h1{
+    color: white;
+    font-weight: bold;
+    font-size: 3.5rem;
+}
+.aboutsub{
+    color: white;
+    font-weight: bold;
+    font-size: 2.0rem;
+}
+.abouttext, .submitform{
+    margin-top: 0.5rem;
+    margin-left: 2.0rem;
+    margin-right: 1.7rem;
+    margin-bottom: 1.5rem;
+}
+
+
+
+.submitform  input[type=text]{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.submitform  input[type=email]{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+  /*margin-left: 0.1rem;*/
+}
+
+.submitform  textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.submitform input[type="submit"] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  margin-bottom: 0.5rem;
+}
