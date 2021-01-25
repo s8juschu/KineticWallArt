@@ -83,7 +83,11 @@
                 <div class="card mb-8 shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title">Creator</h5>
-                        <p class="card-text">Create or modify patterns for the images.</p>
+                        <p class="card-text">
+                            Create or modify patterns for the images.
+                            <br>
+                            Left-click and hold to set the rotation for each cross. Double-click to change the settings (illumination, color and rotation) .
+                        </p>
                         <div class="d-flex justify-content-between align-items-center">
                             <form method="post" action="{% url 'savepattern' %}" class="btn-margin">
                                  {% csrf_token %}
@@ -97,85 +101,37 @@
                                     <div id="container">
                                         <div id="elem1" class="rotFix">
                                             <div class="elem-cell" unselectable="on">
-                                                <span class="visual-elem" unselectable="on" data-target="#modalelem1" id="elem1" ondblclick="myFunction(this.id)" >&times</span>
+                                                <span class="visual-elem times" unselectable="on" data-target="#modalelem1" id="elem1" ondblclick="myFunction(this.id)" >&times</span>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- Modal -->
                                     <div class="modal fade" id="modalelem1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>TEST1</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {% include "modal.html" %}
                                     </div>
                                 </td>
                                 <td>
                                     <div id="container">
                                         <div id="elem2" class="rotFix">
                                             <div class="elem-cell" unselectable="on">
-                                                <span class="visual-elem" unselectable="on" id="elem2" data-target="#modalelem2" ondblclick="myFunction(this.id)">&times</span>
+                                                <span class="visual-elem times" unselectable="on" id="elem2" data-target="#modalelem2" ondblclick="myFunction(this.id)">&times</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal fade" id="modalelem2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>TEST2</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {% include "modal.html" %}
                                     </div>
                                 </td>
                                 <td>
                                     <div id="container">
                                         <div id="elem3" class="rotFix">
                                             <div class="elem-cell" unselectable="on">
-                                                <span class="visual-elem" unselectable="on" id="elem3"  data-target="#modalelem3" ondblclick="myFunction(this.id)">&times</span>
+                                                <span class="visual-elem times" unselectable="on" id="elem3"  data-target="#modalelem3" ondblclick="myFunction(this.id)">&times</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal fade" id="modalelem3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>TEST3</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                       {% include "modal.html" %}
                                     </div>
                                 </td>
                             </tr>
@@ -184,84 +140,36 @@
                                     <div id="container">
                                         <div id="elem4" class="rotFix">
                                             <div class="elem-cell" unselectable="on">
-                                                <span class="visual-elem" unselectable="on" id="elem4" data-target="#modalelem4" ondblclick="myFunction(this.id)">&times</span>
+                                                <span class="visual-elem times" unselectable="on" id="elem4" data-target="#modalelem4" ondblclick="myFunction(this.id)">&times</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal fade" id="modalelem4" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>TEST4</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {% include "modal.html" %}
                                     </div>
                                 </td>
                                 <td>
                                     <div id="container">
                                         <div id="elem5" class="rotFix">
                                             <div class="elem-cell" unselectable="on">
-                                                <span class="visual-elem" unselectable="on" id="elem5" data-target="#modalelem5" ondblclick="myFunction(this.id)">&times</span>
+                                                <span class="visual-elem times" unselectable="on" id="elem5" data-target="#modalelem5" ondblclick="myFunction(this.id)">&times</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal fade" id="modalelem5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>TEST5</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {% include "modal.html" %}
                                     </div>
                                 </td>
                                 <td>
                                     <div id="container">
                                         <div id="elem6" class="rotFix">
                                             <div class="elem-cell" unselectable="on">
-                                                <span class="visual-elem" unselectable="on" id="elem6" data-target="#modalelem6" ondblclick="myFunction(this.id)">&times</span>
+                                                <span class="visual-elem times" unselectable="on" id="elem6" data-target="#modalelem6" ondblclick="myFunction(this.id)">&times</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal fade" id="modalelem6" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>TEST6</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {% include "modal.html" %}
                                     </div>
                                 </td>
                             </tr>
@@ -270,84 +178,36 @@
                                     <div id="container">
                                         <div id="elem7" class="rotFix">
                                             <div class="elem-cell" unselectable="on">
-                                                <span class="visual-elem" unselectable="on" id="elem7" data-target="#modalelem7" ondblclick="myFunction(this.id)">&times</span>
+                                                <span class="visual-elem times" unselectable="on" id="elem7" data-target="#modalelem7" ondblclick="myFunction(this.id)">&times</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal fade" id="modalelem7" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>TEST7</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {% include "modal.html" %}
                                     </div>
                                 </td>
                                 <td>
                                     <div id="container">
                                         <div id="elem8" class="rotFix">
                                             <div class="elem-cell" unselectable="on">
-                                                <span class="visual-elem" unselectable="on" id="elem8" data-target="#modalelem8" ondblclick="myFunction(this.id)">&times</span>
+                                                <span class="visual-elem times" unselectable="on" id="elem8" data-target="#modalelem8" ondblclick="myFunction(this.id)">&times</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal fade" id="modalelem8" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>TEST8</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {% include "modal.html" %}
                                     </div>
                                 </td>
                                 <td>
                                     <div id="container">
                                         <div id="elem9" class="rotFix">
                                             <div class="elem-cell" unselectable="on">
-                                                <span class="visual-elem" unselectable="on" id="elem9" data-target="#modalelem9" ondblclick="myFunction(this.id)">&times</span>
+                                                <span class="visual-elem times" unselectable="on" id="elem9" data-target="#modalelem9" ondblclick="myFunction(this.id)">&times</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal fade" id="modalelem9" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p>TEST9</p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        {% include "modal.html" %}
                                     </div>
                                 </td>
                             </tr>

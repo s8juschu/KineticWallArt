@@ -53,7 +53,7 @@ td{
 }
 
 
-span {
+.times {
     font-size: 100px;
     color: black;
     font-weight: bold;
@@ -89,5 +89,3 @@ span {
     margin-right: 3px;
     float:left;
 }
-
-
