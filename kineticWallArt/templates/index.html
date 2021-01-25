@@ -6,6 +6,7 @@
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
     <meta content="" name="description">
     <meta content="" name="author">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     {% load static %}
     <link rel="icon" href="{% static 'img/favicon.png' %}">
@@ -88,11 +89,12 @@
                             <br>
                             Left-click and hold to set the rotation for each cross. Double-click to change the settings (illumination, color and rotation) .
                         </p>
-                        <div class="d-flex justify-content-between align-items-center">
+                        <div class="align-items-center">
                             <form method="post" action="{% url 'savepattern' %}" class="btn-margin">
                                  {% csrf_token %}
                                  <button id="savepattern" class="btn-green btn btn-sm">Save</button>
                             </form>
+                            <button id="resetrotation" class="btn-red btn btn-sm">Reset</button>
                         </div>
                         <table class="table table-bordered">
                             <tbody>
@@ -490,6 +492,13 @@
         $(".rotation").val(rotation);
     }
 
+    $(function() {
+        $( "#resetrotation" ).click(function() {
+            $(".rotFix").css({
+                "transform": "rotate(0deg)"
+            });
+        });
+    });
 
 </script>
 
