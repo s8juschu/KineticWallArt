@@ -1,84 +1,88 @@
-<div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Cross settings</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <div class="modal-body">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>TODO: Color picker </p>
-{#                        https://github.com/fabiocaccamo/django-colorfield#}
-                    </div>
+{% for elem in elements %}
+    <div class="modal fade" id="modal{{ elem }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cross settings</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="row">
-                    <div class="col-lg-3">
-                        <p>Light:</p>
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="lightradio" id="lighton" value="option1">
-                            <label class="form-check-label" for="lighton">On</label>
+                <div class="modal-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <p>TODO: Color picker</p>
+        {#                        https://github.com/fabiocaccamo/django-colorfield#}
+                            </div>
                         </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="lightradio" id="lightoff" value="option2">
-                            <label class="form-check-label" for="lightoff">Off</label>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <p>Light:</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="lightradio" id="lighton" value="option1{{ elem }}">
+                                    <label class="form-check-label" for="lighton">On</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="lightradio" id="lightoff" value="option2{{ elem }}">
+                                    <label class="form-check-label" for="lightoff">Off</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <p>Light arms:</p>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check1{{ elem }}">
+                                    <label class="form-check-label" for="check1{{ elem }}">
+                                        Arm 1
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check3{{ elem }}">
+                                    <label class="form-check-label" for="check3{{ elem }}">
+                                        Arm 3
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check2{{ elem }}">
+                                    <label class="form-check-label" for="check2{{ elem }}">
+                                        Arm 2
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="check4{{ elem }}">
+                                    <label class="form-check-label" for="check4{{ elem }}">
+                                        Arm 4
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 3%">
+                            <div class="col-lg-3">
+                                <p>Rotation:</p>
+                            </div>
+                            <div class="col-lg-2" style="width: 60%">
+                                <input class="form-control form-control-sm" id="rotation{{ elem }}" >
+                            </div>
+                            <div >
+                                &#176;
+                            </div>
                         </div>
                     </div>
+
                 </div>
-                <div class="row">
-                    <div class="col-lg-3">
-                        <p>Light arms:</p>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">
-                                Arm 1
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                            <label class="form-check-label" for="defaultCheck3">
-                                Arm 3
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                            <label class="form-check-label" for="defaultCheck2">
-                                Arm 2
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="defaultCheck4">
-                            <label class="form-check-label" for="defaultCheck4">
-                                Arm 4
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row" style="margin-top: 3%">
-                    <div class="col-lg-3">
-                        <p>Rotation:</p>
-                    </div>
-                    <div class="col-lg-2" style="width: 60%">
-                        <input class="form-control form-control-sm rotation" id="rotation" >
-                    </div>
-                    <div >
-                        &#176;
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal" id="cancelmodal{{ elem }}">Cancel</button>
+                    <button type="button" class="btn btn-outline-success btn-sm" id="savemodal{{ elem }}">Save</button>
                 </div>
             </div>
-
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-outline-success btn-sm">Save</button>
         </div>
     </div>
-</div>
+{% endfor %}
