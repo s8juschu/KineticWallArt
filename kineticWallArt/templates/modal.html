@@ -11,9 +11,38 @@
                 <div class="modal-body">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-12">
-                                <p>TODO: Color picker</p>
-        {#                        https://github.com/fabiocaccamo/django-colorfield#}
+                            <div class="col-lg-3">
+                                <p>Arm 1:</p>
+                                {#https://github.com/fabiocaccamo/django-colorfield#}
+                                {#https://jscolor.com/#}
+                                {# value="#FFFFFF00" #}
+                            </div>
+                            <div class="col-lg-8">
+                                <input class="form-control form-control-sm" id="picker1{{ elem }}" value="#FFFFFF" data-jscolor="{}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <p>Arm 2:</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <input class="form-control form-control-sm" id="picker2{{ elem }}" value="#FFFFFF" data-jscolor="{}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <p>Arm 3:</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <input class="form-control form-control-sm" id="picker3{{ elem }}" value="#FFFFFF" data-jscolor="{}">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <p>Arm 4:</p>
+                            </div>
+                            <div class="col-lg-8">
+                                <input class="form-control form-control-sm" id="picker4{{ elem }}" value="#FFFFFF" data-jscolor="{}">
                             </div>
                         </div>
                         <div class="row">
@@ -22,11 +51,11 @@
                             </div>
                             <div class="col-lg-8">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="lightradio" id="lighton" value="option1{{ elem }}">
+                                    <input class="form-check-input" type="radio" name="lightradio{{ elem }}" checked="checked" id="lighton{{ elem }}" value="1">
                                     <label class="form-check-label" for="lighton">On</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="lightradio" id="lightoff" value="option2{{ elem }}">
+                                    <input class="form-check-input" type="radio" name="lightradio{{ elem }}" id="lightoff{{ elem }}" value="0">
                                     <label class="form-check-label" for="lightoff">Off</label>
                                 </div>
                             </div>
@@ -79,8 +108,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal" id="cancelmodal{{ elem }}">Cancel</button>
-                    <button type="button" class="btn btn-outline-success btn-sm" id="savemodal{{ elem }}">Save</button>
+                    <button type="button" class="btn btn-green btn-sm" name="{{elem}}" id="savemodal{{ elem }}" onclick="saveModal(this.name)">Save</button>
+                    <button type="button" class="btn btn-red btn-sm" data-dismiss="modal" id="cancelmodal{{ elem }}">Cancel</button>
                 </div>
             </div>
         </div>

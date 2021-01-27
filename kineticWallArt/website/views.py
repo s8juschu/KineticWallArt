@@ -1,5 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import reverse, render
+from django.views.decorators.csrf import csrf_exempt
 
 
 def index(request):
@@ -40,4 +41,11 @@ def deletepattern(request):
 def savepattern(request):
     if request.method == 'POST':
         print("savepattern")
+    return HttpResponseRedirect(reverse('index'))
+
+
+@csrf_exempt
+def savecross(request):
+    if request.method == 'POST':
+        print("TODO")
     return HttpResponseRedirect(reverse('index'))
