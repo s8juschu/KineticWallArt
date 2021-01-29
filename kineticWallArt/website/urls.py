@@ -12,5 +12,4 @@ urlpatterns = [
     path('previewpattern', views.previewpattern, name='previewpattern'),
     path('deletepattern', views.deletepattern, name='deletepattern'),
     path('savepattern', views.savepattern, name='savepattern'),
-    path('savecross', views.savecross, name='savecross'),
 ]

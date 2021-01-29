@@ -1,6 +1,9 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import reverse, render
 from django.views.decorators.csrf import csrf_exempt
+import json
+
+from .models import Image, Cross
 
 
 def index(request):
@@ -38,14 +41,30 @@ def deletepattern(request):
     return HttpResponseRedirect(reverse('index'))
 
 
+@csrf_exempt
 def savepattern(request):
     if request.method == 'POST':
-        print("savepattern")
-    return HttpResponseRedirect(reverse('index'))
+        getimageinfo = request.body.decode('utf-8')
+        imageinfo = json.loads(getimageinfo)
+        print(imageinfo)
+        imagename = imageinfo["name"]
 
+        if Image.objects.filter(pk=imagename).exists():
+            print("Exists")
+            image = Image.objects.get(pk=imagename)
+            Cross.objects.filter(image=image).delete()
+        else:
+            image = Image()
+            image.name = imagename
+            image.save()
 
-@csrf_exempt
-def savecross(request):
-    if request.method == 'POST':
-        print("TODO")
+        listitem = imageinfo["listarray"]
+        for item in listitem:
+            cross = Cross(name=item["name"], illumination=item["illumination"], ill_cross1=item["ill_cross1"],
+                              ill_cross2=item["ill_cross2"], ill_cross3=item["ill_cross3"], ill_cross4=item["ill_cross4"],
+                              color_cross1=item["color_cross1"], color_cross2=item["color_cross2"], color_cross3=item["color_cross3"],
+                              color_cross4=item["color_cross4"], rotation=item["rotation"])
+            cross.image = image
+            # print(item)
+            cross.save()
     return HttpResponseRedirect(reverse('index'))
