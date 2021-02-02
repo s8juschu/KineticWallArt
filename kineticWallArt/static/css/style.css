@@ -85,7 +85,31 @@ td{
     width:100px;
 }
 
+.rotFix{
+    margin-top: 20px;
+}
+
 .btn-margin{
     margin-right: 3px;
     float:left;
+}
+
+.cross-horizontal{
+    font-size: 10px;
+    width: 40px;
+    height: 20px;
+    border:1px solid #000;
+    background-color:white;
+}
+
+.cross-vertical{
+    font-size: 10px;
+    width: 20px;
+    height: 40px;
+    border:1px solid #000;
+    background-color:white;
+    display: inline-block;
+    /*text-align: center;*/
+    vertical-align: middle;
+    padding: 10px 0;
 }
