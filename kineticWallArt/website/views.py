@@ -8,7 +8,8 @@ from .models import Image, Cross
 
 def index(request):
     elements = {"elem1", "elem2", "elem3", "elem4", "elem5", "elem6", "elem7", "elem8", "elem9"}
-    return render(request, 'index.html', context={'elements': elements})
+    images = Image.objects.all()
+    return render(request, 'index.html', context={'elements': elements, 'images': images})
 
 
 def clear(request):
@@ -49,14 +50,9 @@ def savepattern(request):
         print(imageinfo)
         imagename = imageinfo["name"]
 
-        if Image.objects.filter(pk=imagename).exists():
-            print("Exists")
-            image = Image.objects.get(pk=imagename)
-            Cross.objects.filter(image=image).delete()
-        else:
-            image = Image()
-            image.name = imagename
-            image.save()
+        image = Image()
+        image.name = imagename
+        image.save()
 
         listitem = imageinfo["listarray"]
         for item in listitem:

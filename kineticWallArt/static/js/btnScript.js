@@ -46,15 +46,17 @@ function saveModal(id) {
     $("#arm4"+id).css({"background-color": colarm4});
 }
 
-for (let x=0; x<elements.length; x++) {
-
+function closeModal(id) {
+    //TODO : RESET CROSS
 }
+
 function savePattern() {
     //Save values of modal
     var image = {};
     image.listarray = [];
 
-    image.name = "1"; //TODO
+    image.name = document.getElementById("inputPatternName").value;
+
     for (let x=0; x<elements.length; x++) {
         var id = elements[x];
         var cross = {};
@@ -83,13 +85,10 @@ function savePattern() {
         if(rot == ""){
             rot = "0";
         }
-
         cross.rotation = rot;
 
         image.listarray.push(cross);
     }
-
-    console.log(image);
 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", '/website/savepattern', true);
