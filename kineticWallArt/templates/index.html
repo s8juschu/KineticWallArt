@@ -78,26 +78,77 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for img in images %}
+                                    {% for img in patterns %}
                                     <tr>
                                         <td>{{ img.name }}</td>
                                         <td>
-                                            <button class="btn-icon-grey" id="previewpattern"><i class="fa fa-eye"></i></button>
-                                            <button class="btn-icon-blue" id="setpattern"><i class="fa fa-share-square"></i></button>
+                                            <button class="btn-icon-grey" id="previewpattern" data-toggle="modal" data-target="#previewModal{{img.pk}}"><i class="fa fa-eye"></i></button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="previewModal{{img.pk}}" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel{{img.pk}}"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="previewModalLabel{{img.pk}}">Preview</h5>
+                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn-blue btn btn-sm" data-dismiss="modal">Edit</button>
+                                                            <button class="btn-red btn btn-sm" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="btn-icon-blue" id="setpattern" data-toggle="modal" data-target="#setModal{{img.pk}}"><i class="fa fa-share-square"></i></button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="setModal{{img.pk}}" tabindex="-1" role="dialog" aria-labelledby="setModalLabel{{img.pk}}"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="deleteModalLabel{{img.pk}}">Set pattern</h5>
+                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>To which image would you like to send the pattern?</p>
+                                                            <div>
+                                                                <select class="form-control" id="imageSelect{{ img.pk }}">
+                                                                    <option value="1">Image 1</option>
+                                                                    <option value="2">Image 2</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+{#                                                            <a class="btn-green btn btn-sm" href="{% url 'setpattern' %}">Upload</a>#}
+                                                            <button class="btn-green btn btn-sm" onclick="setPattern({{ img.pk }})" data-dismiss="modal">Upload</button>
+                                                            <button class="btn-red btn btn-sm" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <button class="btn-icon-red" id="deletepattern" data-toggle="modal" data-target="#deleteModal{{img.pk}}"><i class="fa fa-trash-alt"></i></button>
-{#                                            <a href="" class="btn btn-danger btn-rounded btn-sm my-0"  data-toggle="modal" data-target="#deleteModal{{b.pk}}" >Delete</a>#}
+                                            <!-- Modal -->
                                             <div class="modal fade" id="deleteModal{{img.pk}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel{{img.pk}}"
                                                  aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="deleteModalLabel{{img.pk}}">Are you sure you want to delete the pattern?</h5>
+                                                            <h5 class="modal-title" id="deleteModalLabel{{img.pk}}">Delete</h5>
                                                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">×</span>
                                                             </button>
                                                         </div>
+                                                        <div class="modal-body">
+                                                            Are you sure you want to delete the pattern?
+                                                        </div>
                                                         <div class="modal-footer">
-                                                            <a class="btn btn-secondary" href="{% url 'deletepattern' pattern_id=img.pk %}">Yes</a>
+                                                            <a class="btn-green btn btn-sm" href="{% url 'deletepattern' pattern_id=img.pk %}">Yes</a>
                                                             <button class="btn-red btn btn-sm" data-dismiss="modal">No</button>
                                                         </div>
                                                     </div>

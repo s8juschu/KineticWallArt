@@ -1,4 +1,5 @@
 var elements = ["elem1", "elem2", "elem3", "elem4", "elem5", "elem6", "elem7", "elem8", "elem9"];
+var xhr = new XMLHttpRequest();
 // var clone = $('.modal-body').html();
 
 function getCurrentRotation(el){
@@ -52,10 +53,10 @@ function closeModal(id) {
 
 function savePattern() {
     //Save values of modal
-    var image = {};
-    image.listarray = [];
+    var pattern = {};
+    pattern.listarray = [];
 
-    image.name = document.getElementById("inputPatternName").value;
+    pattern.name = document.getElementById("inputPatternName").value;
 
     for (let x=0; x<elements.length; x++) {
         var id = elements[x];
@@ -87,13 +88,27 @@ function savePattern() {
         }
         cross.rotation = rot;
 
-        image.listarray.push(cross);
+        pattern.listarray.push(cross);
     }
 
-    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200)
+       {
+            location.reload(true);
+       }
+    };
     xhr.open("POST", '/website/savepattern', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.send(JSON.stringify(image));
+    xhr.send(JSON.stringify(pattern));
+}
+
+function setPattern(pk){
+    var selected = $("#imageSelect"+pk+" :selected").val();
+    var text = '{ "image" : ' + selected + ', "pattern" : ' +pk+ '}';
+
+    xhr.open("POST", '/website/setpattern', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(text));
 }
 
 //Logic reset pattern button

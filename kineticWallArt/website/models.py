@@ -6,7 +6,7 @@ from colorfield.fields import ColorField
 #     color = ColorField(default='#FF0000')
 
 
-class Image(models.Model):
+class Pattern(models.Model):
     name = models.CharField(max_length=10)
 
 
@@ -22,4 +22,4 @@ class Cross(models.Model):
     color_cross3 = ColorField(default='#ffffff')
     color_cross4 = ColorField(default='#ffffff')
     rotation = models.IntegerField(default=0)
-    image = models.ForeignKey(Image, on_delete=models.CASCADE)
+    pattern = models.ForeignKey(Pattern, on_delete=models.CASCADE)
