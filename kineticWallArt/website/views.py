@@ -15,18 +15,21 @@ def index(request):
 def clear(request):
     if request.method == 'POST':
         print("clear")
+        # TODO MQTT
     return HttpResponseRedirect(reverse('index'))
 
 
 def sync(request):
     if request.method == 'POST':
         print("sync")
+        # TODO MQTT
     return HttpResponseRedirect(reverse('index'))
 
 
 def setpattern(request):
     if request.method == 'POST':
         print("setpattern")
+        # TODO MQTT
     return HttpResponseRedirect(reverse('index'))
 
 
@@ -36,9 +39,12 @@ def previewpattern(request):
     return HttpResponseRedirect(reverse('index'))
 
 
-def deletepattern(request):
-    if request.method == 'POST':
-        print("deletepattern")
+def deletepattern(request, pattern_id):
+    print(pattern_id)
+    image = Image.objects.get(pk=pattern_id)
+    cross = Cross.objects.filter(image=image).delete()
+    image.delete()
+    print("deletepattern")
     return HttpResponseRedirect(reverse('index'))
 
 
@@ -57,9 +63,10 @@ def savepattern(request):
         listitem = imageinfo["listarray"]
         for item in listitem:
             cross = Cross(name=item["name"], illumination=item["illumination"], ill_cross1=item["ill_cross1"],
-                              ill_cross2=item["ill_cross2"], ill_cross3=item["ill_cross3"], ill_cross4=item["ill_cross4"],
-                              color_cross1=item["color_cross1"], color_cross2=item["color_cross2"], color_cross3=item["color_cross3"],
-                              color_cross4=item["color_cross4"], rotation=item["rotation"])
+                          ill_cross2=item["ill_cross2"], ill_cross3=item["ill_cross3"], ill_cross4=item["ill_cross4"],
+                          color_cross1=item["color_cross1"], color_cross2=item["color_cross2"],
+                          color_cross3=item["color_cross3"],
+                          color_cross4=item["color_cross4"], rotation=item["rotation"])
             cross.image = image
             # print(item)
             cross.save()
