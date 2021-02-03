@@ -34,6 +34,16 @@ function saveModal(id) {
     });
 
     $('#modal'+id).modal('hide');
+
+    //Set selected color
+    var colarm1 = $("#picker1"+id).val();
+    var colarm2 = $("#picker4"+id).val();
+    var colarm3 = $("#picker2"+id).val();
+    var colarm4 = $("#picker3"+id).val();
+    $("#arm1"+id).css({"background-color": colarm1});
+    $("#arm2"+id).css({"background-color": colarm2});
+    $("#arm3"+id).css({"background-color": colarm3});
+    $("#arm4"+id).css({"background-color": colarm4});
 }
 
 for (let x=0; x<elements.length; x++) {
