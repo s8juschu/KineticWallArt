@@ -86,7 +86,7 @@
                                             <!-- Modal -->
                                             <div class="modal fade" id="previewModal{{img.pk}}" tabindex="-1" role="dialog" aria-labelledby="previewModalLabel{{img.pk}}"
                                                  aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-dialog modal-dialog-centered modal-size" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="previewModalLabel{{img.pk}}">Preview</h5>
@@ -95,6 +95,11 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
+                                                            <table id="crosstable" class="table table-bordered">
+                                                                <tbody>
+                                                                 {%  include "previewcross.html" %}
+                                                                </tbody>
+                                                            </table>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button class="btn-blue btn btn-sm" data-dismiss="modal">Edit</button>
@@ -243,6 +248,25 @@
 <!-- Bootstrap core JavaScript -->
 <script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
 <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+
+<script>
+    {% for key, values in array.items %}
+        console.log({{ key }});
+        {% for v in values %}
+            $("#{{ v.name }}preview{{key}}").css({  "transform": "rotate({{ v.rotation }}deg)" });
+            {#console.log({{ v.illumination }});#}
+            {#console.log({{ v.ill_cross1 }});#}
+            {#console.log({{ v.ill_cross2 }});#}
+            {#console.log({{ v.ill_cross3 }});#}
+            {#console.log({{ v.ill_cross4 }});#}
+            {#console.log({{ v.color_cross1 }});#}
+            {#console.log({{ v.color_cross2 }});#}
+            {#console.log({{ v.color_cross3 }});#}
+            {#console.log({{ v.color_cross4 }});#}
+        {% endfor %}
+    {% endfor %}
+</script>
 
 </body>
 

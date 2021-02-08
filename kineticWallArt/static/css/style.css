@@ -53,7 +53,7 @@
 
 .table-wrapper {
     /*margin-top: 20px;*/
-    max-height: 335px;
+    max-height: 360px;
     overflow: auto;
     display:inline-block;
 }
@@ -164,4 +164,9 @@
     color: #495057;
     border: 1px solid #ced4da;
     transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+
+.modal-size{
+    max-width: 535px;
 }

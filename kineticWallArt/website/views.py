@@ -1,15 +1,37 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import reverse, render
 from django.views.decorators.csrf import csrf_exempt
+from collections import defaultdict
 import json
 
 from .models import Pattern, Cross
 
 
 def index(request):
+    arraypattern = defaultdict(list)
     elements = {"elem1", "elem2", "elem3", "elem4", "elem5", "elem6", "elem7", "elem8", "elem9"}
     patterns = Pattern.objects.all()
-    return render(request, 'index.html', context={'elements': elements, 'patterns': patterns})
+    for p in patterns:
+        cross = Cross.objects.filter(pattern=p)
+        for c in cross:
+            crossdict = {
+                "name": c.name,
+                "illumination": c.illumination,
+                "ill_cross1": c.ill_cross1,
+                "ill_cross2": c.ill_cross2,
+                "ill_cross3": c.ill_cross3,
+                "ill_cross4": c.ill_cross4,
+                "color_cross1": c.color_cross1,
+                "color_cross2": c.color_cross2,
+                "color_cross3": c.color_cross3,
+                "color_cross4": c.color_cross4,
+                "rotation": c.rotation
+            }
+            # crossinfo = [c.name, c.illumination, c.ill_cross1, c.color_cross2, c.ill_cross3, c.ill_cross4, c.color_cross1, c.color_cross2, c.color_cross3, c.color_cross4, c.rotation]
+            arraypattern[p.pk].append(crossdict)
+    arraydict = dict(arraypattern)
+    print(arraydict)
+    return render(request, 'index.html', context={'elements': elements, 'patterns': patterns, 'array': arraydict})
 
 
 def clear(request):
