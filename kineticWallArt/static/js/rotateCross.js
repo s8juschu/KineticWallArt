@@ -34,6 +34,8 @@ var kcRotateDial = function (elem) {
 
     //Public Methods
     output.onchange = function () {
+        // console.log(Math.round(output.deg));
+        // $('#rotation'+elem).val(Math.round(output.deg));
     };
 
     //Private Methods

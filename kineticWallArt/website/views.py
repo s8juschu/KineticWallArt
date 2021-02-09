@@ -27,10 +27,9 @@ def index(request):
                 "color_cross4": c.color_cross4,
                 "rotation": c.rotation
             }
-            # crossinfo = [c.name, c.illumination, c.ill_cross1, c.color_cross2, c.ill_cross3, c.ill_cross4, c.color_cross1, c.color_cross2, c.color_cross3, c.color_cross4, c.rotation]
             arraypattern[p.pk].append(crossdict)
     arraydict = dict(arraypattern)
-    print(arraydict)
+    # print(arraydict)
     return render(request, 'index.html', context={'elements': elements, 'patterns': patterns, 'array': arraydict})
 
 

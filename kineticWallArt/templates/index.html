@@ -252,18 +252,18 @@
 
 <script>
     {% for key, values in array.items %}
-        console.log({{ key }});
+        {#console.log({{ key }});#}
         {% for v in values %}
             $("#{{ v.name }}preview{{key}}").css({  "transform": "rotate({{ v.rotation }}deg)" });
+            $("#arm1{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross1 }}"});
+            $("#arm2{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross2 }}"});
+            $("#arm3{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross3 }}"});
+            $("#arm4{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross4 }}"});
             {#console.log({{ v.illumination }});#}
             {#console.log({{ v.ill_cross1 }});#}
             {#console.log({{ v.ill_cross2 }});#}
             {#console.log({{ v.ill_cross3 }});#}
             {#console.log({{ v.ill_cross4 }});#}
-            {#console.log({{ v.color_cross1 }});#}
-            {#console.log({{ v.color_cross2 }});#}
-            {#console.log({{ v.color_cross3 }});#}
-            {#console.log({{ v.color_cross4 }});#}
         {% endfor %}
     {% endfor %}
 </script>

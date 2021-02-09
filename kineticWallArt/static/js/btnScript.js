@@ -82,11 +82,13 @@ function savePattern() {
         cross.ill_cross3 = document.getElementById("check3"+id).checked;
         cross.ill_cross4 = document.getElementById("check4"+id).checked;
 
-        var rot =  document.getElementById("rotation"+id).value;
-        if(rot == ""){
-            rot = "0";
+        var elem = document.getElementById(id);
+        var rotation = getCurrentRotation(elem);
+
+        if(rotation === ""){
+            rotation = "0";
         }
-        cross.rotation = rot;
+        cross.rotation = rotation;
 
         pattern.listarray.push(cross);
     }
