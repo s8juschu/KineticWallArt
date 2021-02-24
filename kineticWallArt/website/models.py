@@ -7,11 +7,11 @@ from colorfield.fields import ColorField
 
 
 class Pattern(models.Model):
-    name = models.CharField(max_length=10)
+    name = models.CharField(max_length=100)
 
 
 class Cross(models.Model):
-    name = models.CharField(max_length=10)
+    name = models.CharField(max_length=100)
     illumination = models.BooleanField()
     ill_cross1 = models.BooleanField()
     ill_cross2 = models.BooleanField()
@@ -23,3 +23,7 @@ class Cross(models.Model):
     color_cross4 = ColorField(default='#ffffff')
     rotation = models.IntegerField(default=0)
     pattern = models.ForeignKey(Pattern, on_delete=models.CASCADE)
+
+
+class Animation(models.Model):
+    name = models.CharField(max_length=10)

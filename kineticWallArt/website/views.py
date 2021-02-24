@@ -30,8 +30,11 @@ def index(request):
             arraypattern[p.pk].append(crossdict)
     arraydict = dict(arraypattern)
     # print(arraydict)
-    return render(request, 'index.html', context={'elements': elements, 'patterns': patterns, 'array': arraydict})
+    return render(request, 'index.html', context={'elements': elements, 'patterns': patterns, 'array': arraydict, 'jsarray': json.dumps(arraydict), 'nbar': index})
 
+
+def animator(request):
+    return render(request, 'animator.html')
 
 def clear(request):
     if request.method == 'POST':

@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('index', views.index, name='index'),
+    path('animator', views.animator, name='animator'),
 
     path('clear', views.clear, name='clear'),
     path('sync', views.sync, name='sync'),

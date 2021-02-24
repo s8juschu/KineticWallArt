@@ -47,10 +47,6 @@ function saveModal(id) {
     $("#arm4"+id).css({"background-color": colarm4});
 }
 
-function closeModal(id) {
-    //TODO : RESET CROSS
-}
-
 function savePattern() {
     //Save values of modal
     var pattern = {};
@@ -111,6 +107,19 @@ function setPattern(pk){
     xhr.open("POST", '/website/setpattern', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(text));
+}
+
+function resetModal(id){
+    document.querySelector("#picker1"+id).jscolor.fromString('ffffff');
+    document.querySelector("#picker2"+id).jscolor.fromString('ffffff');
+    document.querySelector("#picker3"+id).jscolor.fromString('ffffff');
+    document.querySelector("#picker4"+id).jscolor.fromString('ffffff');
+    document.getElementById("check1"+id).checked = false;
+    document.getElementById("check2"+id).checked = false;
+    document.getElementById("check3"+id).checked = false;
+    document.getElementById("check4"+id).checked = false;
+    document.getElementById("lighton"+id).checked = true;
+    document.getElementById("lightoff"+id).checked = false;
 }
 
 //Logic reset pattern button

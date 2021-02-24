@@ -20,6 +20,10 @@
 </head>
 <body>
 <!-- Page Content -->
+
+<!-- Navbar -->
+{% include "navbar.html" %}
+
 <div class="container">
     <div class="row">
         <div class="col-lg-12 text-center">
@@ -55,20 +59,6 @@
                         <p class="card-text">Allows you to manage the saved patterns.
                         You can either preview, set (send to image) or delete the patterns.
                         </p>
-{#                        <div class="align-items-center">#}
-{#                            <form method="post" action="{% url 'setpattern' %}" class="btn-margin">#}
-{#                                 {% csrf_token %}#}
-{#                                 <button id="setpattern" class="btn-blue btn btn-sm">Set Pattern</button>#}
-{#                            </form>#}
-{#                            <form method="post" action="{% url 'previewpattern' %}" class="btn-margin">#}
-{#                                 {% csrf_token %}#}
-{#                                 <button id="previewpattern" class="btn-blue btn btn-sm">Preview</button>#}
-{#                            </form>#}
-{#                            <form method="post" action="{% url 'deletepattern' %}" class="btn-margin">#}
-{#                                 {% csrf_token %}#}
-{#                                 <button id="deletepattern" class="btn-red btn btn-sm">Delete</button>#}
-{#                            </form>#}
-{#                        </div>#}
                         <div class=table-wrapper>
                             <table id="imagetable" class="table table-bordered">
                                 <thead class="thead-light">
@@ -89,7 +79,7 @@
                                                 <div class="modal-dialog modal-dialog-centered modal-size" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="previewModalLabel{{img.pk}}">Preview</h5>
+                                                            <h5 class="modal-title" id="previewModalLabel{{img.pk}}">Preview "{{img.name}}"</h5>
                                                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">×</span>
                                                             </button>
@@ -102,7 +92,7 @@
                                                             </table>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button class="btn-blue btn btn-sm" data-dismiss="modal">Edit</button>
+                                                            <button class="btn-blue btn btn-sm" data-dismiss="modal" onclick="editPattern({{img.pk}}, '{{img.name}}')">Edit</button>
                                                             <button class="btn-red btn btn-sm" data-dismiss="modal">Close</button>
                                                         </div>
                                                     </div>
@@ -220,7 +210,7 @@
                                             Are you sure you want to reset your changes?
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn-green btn btn-sm" id="resetrotation">Yes</button>
+                                            <button type="button" class="btn-green btn btn-sm" data-dismiss="modal" id="resetrotation">Yes</button>
                                             <button type="button" class="btn-red btn btn-sm" data-dismiss="modal">No</button>
                                         </div>
                                     </div>
@@ -254,18 +244,43 @@
     {% for key, values in array.items %}
         {#console.log({{ key }});#}
         {% for v in values %}
-            $("#{{ v.name }}preview{{key}}").css({  "transform": "rotate({{ v.rotation }}deg)" });
+            $("#{{ v.name }}preview{{key}}").css({"transform": "rotate({{ v.rotation }}deg)"});
             $("#arm1{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross1 }}"});
             $("#arm2{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross2 }}"});
             $("#arm3{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross3 }}"});
             $("#arm4{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross4 }}"});
-            {#console.log({{ v.illumination }});#}
-            {#console.log({{ v.ill_cross1 }});#}
-            {#console.log({{ v.ill_cross2 }});#}
-            {#console.log({{ v.ill_cross3 }});#}
-            {#console.log({{ v.ill_cross4 }});#}
         {% endfor %}
     {% endfor %}
+
+    function editPattern(pk, imgname){
+        var marray = {{ jsarray|safe }};
+        var mvar = marray[pk];
+        for (var i = 0; i < 9; i++) {
+            var name = mvar[i].name;
+            var illumination = mvar[i].illumination;
+            console.log(illumination);
+            var rotation = mvar[i].rotation;
+            $("#"+name).css({
+                "transform": "rotate("+rotation+"deg)"
+            });
+            document.querySelector("#picker1"+name).jscolor.fromString(mvar[i].color_cross1);
+            document.querySelector("#picker2"+name).jscolor.fromString(mvar[i].color_cross2);
+            document.querySelector("#picker3"+name).jscolor.fromString(mvar[i].color_cross3);
+            document.querySelector("#picker4"+name).jscolor.fromString(mvar[i].color_cross4);
+            $("#arm1"+name).css({"background-color": mvar[i].color_cross1});
+            $("#arm2"+name).css({"background-color": mvar[i].color_cross2});
+            $("#arm3"+name).css({"background-color": mvar[i].color_cross3});
+            $("#arm4"+name).css({"background-color": mvar[i].color_cross4});
+            document.getElementById("check1"+name).checked = mvar[i].ill_cross1;
+            document.getElementById("check2"+name).checked = mvar[i].ill_cross2;
+            document.getElementById("check3"+name).checked = mvar[i].ill_cross3;
+            document.getElementById("check4"+name).checked = mvar[i].ill_cross4;
+            document.getElementById("lighton"+name).checked = illumination;
+            document.getElementById("lightoff"+name).checked = !illumination;
+            document.getElementById("rotation"+name).checked = rotation;
+            document.getElementById("inputPatternName").value = imgname;
+        }
+    }
 </script>
 
 </body>
