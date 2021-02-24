@@ -81,9 +81,19 @@ def savepattern(request):
         print(patterninfo)
         patternname = patterninfo["name"]
 
-        pattern = Pattern()
-        pattern.name = patternname
-        pattern.save()
+        checkDB = patterninfo["checkDB"]
+
+        if checkDB != "":
+            if Pattern.objects.filter(pk=checkDB).exists():
+                pattern = Pattern.objects.get(pk=checkDB)
+                pattern.name = patternname
+                pattern.save()
+                print("EXISTS")
+                Cross.objects.filter(pattern=pattern).delete()
+        else:
+            pattern = Pattern()
+            pattern.name = patternname
+            pattern.save()
 
         listitem = patterninfo["listarray"]
         for item in listitem:

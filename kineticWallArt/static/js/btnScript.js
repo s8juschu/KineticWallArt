@@ -53,6 +53,7 @@ function savePattern() {
     pattern.listarray = [];
 
     pattern.name = document.getElementById("inputPatternName").value;
+    pattern.checkDB = document.getElementById("inputPatternID").value;
 
     for (let x=0; x<elements.length; x++) {
         var id = elements[x];
@@ -124,24 +125,5 @@ function resetModal(id){
 
 //Logic reset pattern button
 $( "#resetrotation" ).click(function() {
-    $(".rotFix").css({
-        "transform": "rotate(0deg)"
-    });
-
-    for (let x=0; x<elements.length; x++) {
-        var id = elements[x];
-
-        document.getElementById("picker1"+id).value = "#FFFFFF";
-        document.getElementById("picker2"+id).value = "#FFFFFF";
-        document.getElementById("picker3"+id).value = "#FFFFFF" ;
-        document.getElementById("picker4"+id).value = "#FFFFFF";
-        document.getElementById("check1"+id).checked = false;
-        document.getElementById("check2"+id).checked = false;
-        document.getElementById("check3"+id).checked = false;
-        document.getElementById("check4"+id).checked = false;
-        document.getElementById("lighton"+id).checked = true;
-        document.getElementById("lightoff"+id).checked = false;
-    }
-
     location.reload(true);
 });

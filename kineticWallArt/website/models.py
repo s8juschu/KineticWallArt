@@ -24,6 +24,6 @@ class Cross(models.Model):
     rotation = models.IntegerField(default=0)
     pattern = models.ForeignKey(Pattern, on_delete=models.CASCADE)
 
-
-class Animation(models.Model):
-    name = models.CharField(max_length=10)
+#
+# class Animation(models.Model):
+#     name = models.CharField(max_length=10)

@@ -186,6 +186,7 @@
                                                 <div class="col-sm-8">
                                                     <input type="text" class="form-control" id="inputPatternName" placeholder="Name">
                                                 </div>
+                                                <input type="text" style="display: none;" id="inputPatternID" placeholder="">
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -246,9 +247,9 @@
         {% for v in values %}
             $("#{{ v.name }}preview{{key}}").css({"transform": "rotate({{ v.rotation }}deg)"});
             $("#arm1{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross1 }}"});
-            $("#arm2{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross2 }}"});
-            $("#arm3{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross3 }}"});
-            $("#arm4{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross4 }}"});
+            $("#arm2{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross4 }}"});
+            $("#arm3{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross2 }}"});
+            $("#arm4{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross3 }}"});
         {% endfor %}
     {% endfor %}
 
@@ -258,7 +259,6 @@
         for (var i = 0; i < 9; i++) {
             var name = mvar[i].name;
             var illumination = mvar[i].illumination;
-            console.log(illumination);
             var rotation = mvar[i].rotation;
             $("#"+name).css({
                 "transform": "rotate("+rotation+"deg)"
@@ -268,9 +268,9 @@
             document.querySelector("#picker3"+name).jscolor.fromString(mvar[i].color_cross3);
             document.querySelector("#picker4"+name).jscolor.fromString(mvar[i].color_cross4);
             $("#arm1"+name).css({"background-color": mvar[i].color_cross1});
-            $("#arm2"+name).css({"background-color": mvar[i].color_cross2});
-            $("#arm3"+name).css({"background-color": mvar[i].color_cross3});
-            $("#arm4"+name).css({"background-color": mvar[i].color_cross4});
+            $("#arm2"+name).css({"background-color": mvar[i].color_cross4});
+            $("#arm3"+name).css({"background-color": mvar[i].color_cross2});
+            $("#arm4"+name).css({"background-color": mvar[i].color_cross3});
             document.getElementById("check1"+name).checked = mvar[i].ill_cross1;
             document.getElementById("check2"+name).checked = mvar[i].ill_cross2;
             document.getElementById("check3"+name).checked = mvar[i].ill_cross3;
@@ -279,6 +279,7 @@
             document.getElementById("lightoff"+name).checked = !illumination;
             document.getElementById("rotation"+name).checked = rotation;
             document.getElementById("inputPatternName").value = imgname;
+            document.getElementById("inputPatternID").value = pk;
         }
     }
 </script>
