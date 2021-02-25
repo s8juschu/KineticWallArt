@@ -78,7 +78,7 @@ def savepattern(request):
     if request.method == 'POST':
         getpatterninfo = request.body.decode('utf-8')
         patterninfo = json.loads(getpatterninfo)
-        print(patterninfo)
+        # print(patterninfo)
         patternname = patterninfo["name"]
 
         checkDB = patterninfo["checkDB"]
