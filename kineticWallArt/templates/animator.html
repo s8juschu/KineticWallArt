@@ -149,10 +149,11 @@
                             Create or modify animations for the images.
                             <br>
                             Left-click and hold to set the rotation for each cross. Double-click to change the settings (illumination, color and rotation).
-                            Press the frame button to save a frame and save to save the whole animation.
+                            Press the frame button to save a frame and the save button to save the whole animation.
                         </p>
                         <div class="align-items-center">
                             <button class="btn-green btn btn-sm" data-toggle="modal" data-target="#saveModalAnimation">Save</button>
+                            <button class="btn-blue btn btn-sm" id="frame">Frame</button>
                             <!-- Modal -->
                             <div class="modal fade" id="saveModalAnimation" tabindex="-1" role="dialog" aria-labelledby="saveModalAnimationTitel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -182,6 +183,13 @@
                             </div>
                             <button class="btn-red btn btn-sm" data-toggle="modal" data-target="#resetModal">Reset</button>
                         </div>
+                        <table id="crosstable" class="table table-bordered">
+                            <tbody>
+                             {%  include "cross.html" %}
+                            </tbody>
+                        </table>
+                        <!-- Modal -->
+                        {% include "modal.html" %}
                     </div>
                 </div>
             </div>
@@ -189,7 +197,7 @@
     </div>
 </div>
 
-{#<script src="{% static 'js/rotateCross.js' %}"></script>#}
+<script src="{% static 'js/rotateCross.js' %}"></script>
 <script src="{% static 'js/btnScript.js' %}"></script>
 <script src="{% static 'colorfield/jscolor/jscolor.js' %}"></script>
 
