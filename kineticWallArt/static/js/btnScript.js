@@ -127,3 +127,33 @@ function resetModal(id){
 $( "#resetrotation" ).click(function() {
     location.reload(true);
 });
+
+
+function saveAnimation() {
+    var animation = {};
+    animation.listarray = [];
+
+    animation.name = document.getElementById("inputAnimationName").value;
+    animation.checkDB = document.getElementById("inputAnimationID").value;
+
+    xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200)
+       {
+            location.reload(true);
+       }
+    };
+    xhr.open("POST", '/website/saveanimation', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(animation));
+
+}
+
+
+function setAnimation(pk){
+    var selected = $("#imageSelectAnimation"+pk+" :selected").val();
+    var text = '{ "image" : ' + selected + ', "pattern" : ' +pk+ '}';
+
+    xhr.open("POST", '/website/setanimation', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(text));
+}

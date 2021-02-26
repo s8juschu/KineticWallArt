@@ -39,26 +39,105 @@
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title">General settings</h5>
-                        <p class="card-text">Here you can manage the settings that affect both images in general.</p>
-                        <div class="align-items-center">
-                            <form method="post" action="{% url 'clear' %}" class="btn-margin">
-                                 {% csrf_token %}
-                                <button id="clear" class="btn-blue btn btn-sm">Clear</button>
-                            </form>
-                            <form method="post" action="{% url 'sync' %}" class="btn-margin">
-                                 {% csrf_token %}
-                                 <button id="sync" class="btn-blue btn btn-sm">Sync</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-body">
                         <h5 class="card-title">Overview Animations</h5>
                         <p class="card-text">Allows you to manage the saved animations.
-                        You can either preview, set (send to image) or delete the animation.
+                            You can either preview, set (send to image) or delete the animation.
                         </p>
+                        <div class=table-wrapper>
+                            <table id="imagetable" class="table table-bordered">
+                                <thead class="thead-light">
+                                <tr>
+                                    <th>Name</th>
+                                    <th style="width: 43%;">Options</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for ani in animations %}
+                                    <tr>
+                                        <td>{{ ani.name }}</td>
+                                        <td>
+                                            <button class="btn-icon-grey" id="previewanimation" data-toggle="modal" data-target="#previewModalAnimation{{ani.pk}}"><i class="fa fa-eye"></i></button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="previewModalAnimation{{ani.pk}}" tabindex="-1" role="dialog" aria-labelledby="previewModalAnimationLabel{{ani.pk}}"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-size" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="previewModalAnimationLabel{{ani.pk}}">Preview "{{ani.name}}"</h5>
+                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <table id="crosstable" class="table table-bordered">
+                                                                <tbody>
+                                                                {%  include "previewcross.html" %}
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn-blue btn btn-sm" data-dismiss="modal" onclick="editAnimation({{ani.pk}}, '{{ani.name}}')">Edit</button>
+                                                            <button class="btn-red btn btn-sm" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="btn-icon-blue" id="setanimation" data-toggle="modal" data-target="#setModalAnimation{{ani.pk}}"><i class="fa fa-share-square"></i></button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="setModalAnimation{{ani.pk}}" tabindex="-1" role="dialog" aria-labelledby="setModalAnimationLabel{{ani.pk}}"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="deleteModalAnimationLabel{{ani.pk}}">Set animation</h5>
+                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>To which image would you like to send the animation?</p>
+                                                            <div>
+                                                                <select class="form-control" id="imageSelectAnimation{{ ani.pk }}">
+                                                                    <option value="1">Image 1</option>
+                                                                    <option value="2">Image 2</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn-green btn btn-sm" onclick="setAnimation({{ ani.pk }})" data-dismiss="modal">Upload</button>
+                                                            <button class="btn-red btn btn-sm" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button class="btn-icon-red" id="deleteanimation" data-toggle="modal" data-target="#deleteModalAnimation{{ani.pk}}"><i class="fa fa-trash-alt"></i></button>
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="deleteModalAnimation{{ani.pk}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalAnimationLabel{{ani.pk}}"
+                                                 aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="deleteModalAnimationLabel{{ani.pk}}">Delete</h5>
+                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Are you sure you want to delete the animation?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a class="btn-green btn btn-sm" href="{% url 'deleteanimation' animation_id=ani.pk %}">Yes</a>
+                                                            <button class="btn-red btn btn-sm" data-dismiss="modal">No</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -73,7 +152,34 @@
                             Press the frame button to save a frame and save to save the whole animation.
                         </p>
                         <div class="align-items-center">
-                            <button class="btn-green btn btn-sm" data-toggle="modal" data-target="#savePatternModal">Save</button>
+                            <button class="btn-green btn btn-sm" data-toggle="modal" data-target="#saveModalAnimation">Save</button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="saveModalAnimation" tabindex="-1" role="dialog" aria-labelledby="saveModalAnimationTitel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="saveModalAnimationTitle">Save</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Please chose a name for the animation:</p>
+                                            <div class="form-group row">
+                                                <label for="inputAnimationName" class="col-sm-3 col-form-label">Animation:</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control" id="inputAnimationName" placeholder="Name">
+                                                </div>
+                                                <input type="text" style="display: none;" id="inputAnimationID" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn-green btn btn-sm" id="saveAnimation" onclick="saveAnimation()" data-dismiss="modal">Save</button>
+                                            <button type="button" class="btn-red btn btn-sm" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <button class="btn-red btn btn-sm" data-toggle="modal" data-target="#resetModal">Reset</button>
                         </div>
                     </div>
@@ -82,6 +188,31 @@
         </div>
     </div>
 </div>
+
+{#<script src="{% static 'js/rotateCross.js' %}"></script>#}
+<script src="{% static 'js/btnScript.js' %}"></script>
+<script src="{% static 'colorfield/jscolor/jscolor.js' %}"></script>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static '/vendor/jquery/jquery.slim.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<script>
+{#    {% for key, values in array.items %}#}
+        {#console.log({{ key }});#}
+{#        {% for v in values %}#}
+{#            $("#{{ v.name }}preview{{key}}").css({"transform": "rotate({{ v.rotation }}deg)"});#}
+{#            $("#arm1{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross1 }}"});#}
+{#            $("#arm2{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross4 }}"});#}
+{#            $("#arm3{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross2 }}"});#}
+{#            $("#arm4{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross3 }}"});#}
+{#        {% endfor %}#}
+{#    {% endfor %}#}
+
+    function editAnimation(pk, animname){
+       console.log("editAnim "+pk+animname)
+    }
+</script>
 
 </body>
 </html>

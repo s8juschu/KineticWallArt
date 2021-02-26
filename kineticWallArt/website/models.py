@@ -1,13 +1,15 @@
 from django.db import models
 from colorfield.fields import ColorField
 
-# Create your models here.
-# class MyModel(models.Model):
-#     color = ColorField(default='#FF0000')
+
+class Animation(models.Model):
+    name = models.CharField(max_length=10)
 
 
 class Pattern(models.Model):
     name = models.CharField(max_length=100)
+    # Relation to animation optional
+    animation = models.ForeignKey(Animation, blank=True, null=True, on_delete=models.CASCADE)
 
 
 class Cross(models.Model):
@@ -23,7 +25,3 @@ class Cross(models.Model):
     color_cross4 = ColorField(default='#ffffff')
     rotation = models.IntegerField(default=0)
     pattern = models.ForeignKey(Pattern, on_delete=models.CASCADE)
-
-#
-# class Animation(models.Model):
-#     name = models.CharField(max_length=10)
