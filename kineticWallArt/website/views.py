@@ -62,7 +62,7 @@ def animator(request):
     #             arraypattern[p.pk].append(crossdict)
     # arraydict = dict(arraypattern)
     # print(arraydict)
-    return render(request, 'animator.html', context={'animations': animations})
+    return render(request, 'animator.html', context={'elements': elements, 'animations': animations})
 
 
 def clear(request):

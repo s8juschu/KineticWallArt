@@ -121,6 +121,12 @@ function resetModal(id){
     document.getElementById("check4"+id).checked = false;
     document.getElementById("lighton"+id).checked = true;
     document.getElementById("lightoff"+id).checked = false;
+    document.getElementById("rotation"+id).value = "0";
+
+    $("#"+id).css({
+        "transform": "rotate(0deg)"
+    });
+
 }
 
 //Logic reset pattern button
