@@ -10,7 +10,7 @@ from .models import Pattern, Cross, Animation
 def index(request):
     arraypattern = defaultdict(list)
     elements = {"elem1", "elem2", "elem3", "elem4", "elem5", "elem6", "elem7", "elem8", "elem9"}
-    patterns = Pattern.objects.all()
+    patterns = Pattern.objects.all().exclude(animation__isnull=False).distinct()
     for p in patterns:
         cross = Cross.objects.filter(pattern=p)
         for c in cross:
@@ -29,7 +29,6 @@ def index(request):
             }
             arraypattern[p.pk].append(crossdict)
     arraydict = dict(arraypattern)
-    # print(arraydict)
     return render(request, 'index.html', context={'elements': elements, 'patterns': patterns, 'array': arraydict,
                                                   'jsarray': json.dumps(arraydict), 'nbar': index})
 
@@ -108,6 +107,7 @@ def savepattern(request):
         getpatterninfo = request.body.decode('utf-8')
         patterninfo = json.loads(getpatterninfo)
         patternname = patterninfo["name"]
+        print(patterninfo)
 
         checkDB = patterninfo["checkDB"]
 
@@ -160,7 +160,6 @@ def saveanimation(request):
     if request.method == 'POST':
         getanimationinfo = request.body.decode('utf-8')
         animationinfo = json.loads(getanimationinfo)
-        print(animationinfo)
         animationname = animationinfo["name"]
 
         checkDB = animationinfo["checkDB"]
@@ -171,11 +170,28 @@ def saveanimation(request):
                 animation.name = animationname
                 animation.save()
                 print("EXISTS")
-                # Cross.objects.filter(pattern=pattern).delete()
+                patterns = Pattern.objects.filter(animation=animation)
+                for p in patterns:
+                    Cross.objects.filter(pattern=p).delete()
+                    p.delete()
         else:
             animation = Animation()
             animation.name = animationname
             animation.save()
-
-        # TODO
+            listframes = animationinfo["frames"]
+            for frame in listframes:
+                pattern = Pattern()
+                pattern.name = "Animation"
+                pattern.animation = animation
+                pattern.save()
+                listitem = frame["listarray"]
+                for item in listitem:
+                    cross = Cross(name=item["name"], illumination=item["illumination"], ill_cross1=item["ill_cross1"],
+                                  ill_cross2=item["ill_cross2"], ill_cross3=item["ill_cross3"],
+                                  ill_cross4=item["ill_cross4"],
+                                  color_cross1=item["color_cross1"], color_cross2=item["color_cross2"],
+                                  color_cross3=item["color_cross3"],
+                                  color_cross4=item["color_cross4"], rotation=item["rotation"])
+                    cross.pattern = pattern
+                    cross.save()
     return HttpResponseRedirect(reverse('animator'))
