@@ -11,7 +11,6 @@ urlpatterns = [
     path('sync', views.sync, name='sync'),
 
     path('setpattern', views.setpattern, name='setpattern'),
-    path('previewpattern', views.previewpattern, name='previewpattern'),
     path('deletepattern/<int:pattern_id>', views.deletepattern, name='deletepattern'),
     path('savepattern', views.savepattern, name='savepattern'),
 

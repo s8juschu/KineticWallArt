@@ -37,30 +37,30 @@ def animator(request):
     arraypattern = defaultdict(list)
     elements = {"elem1", "elem2", "elem3", "elem4", "elem5", "elem6", "elem7", "elem8", "elem9"}
     animations = Animation.objects.all()
-    # for anim in animations:
-    #     print("animation "+str(anim.pk))
-    #     patterns = Pattern.objects.filter(animation=anim)
-    #     for p in patterns:
-    #         print("pattern "+str(p.pk))
-    #         cross = Cross.objects.filter(pattern=0)
-    #         for c in cross:
-    #             print("cross "+str(c.pk))
-    #             crossdict = {
-    #                 "name": c.name,
-    #                 "illumination": c.illumination,
-    #                 "ill_cross1": c.ill_cross1,
-    #                 "ill_cross2": c.ill_cross2,
-    #                 "ill_cross3": c.ill_cross3,
-    #                 "ill_cross4": c.ill_cross4,
-    #                 "color_cross1": c.color_cross1,
-    #                 "color_cross2": c.color_cross2,
-    #                 "color_cross3": c.color_cross3,
-    #                 "color_cross4": c.color_cross4,
-    #                 "rotation": c.rotation
-    #             }
-    #             arraypattern[p.pk].append(crossdict)
-    # arraydict = dict(arraypattern)
-    # print(arraydict)
+    for anim in animations:
+        print("animation "+str(anim.pk))
+        patterns = Pattern.objects.filter(animation=anim)
+        for p in patterns:
+            print("pattern "+str(p.pk))
+            cross = Cross.objects.filter(pattern=p)
+            for c in cross:
+                print("cross "+str(c.pk))
+                crossdict = {
+                    "name": c.name,
+                    "illumination": c.illumination,
+                    "ill_cross1": c.ill_cross1,
+                    "ill_cross2": c.ill_cross2,
+                    "ill_cross3": c.ill_cross3,
+                    "ill_cross4": c.ill_cross4,
+                    "color_cross1": c.color_cross1,
+                    "color_cross2": c.color_cross2,
+                    "color_cross3": c.color_cross3,
+                    "color_cross4": c.color_cross4,
+                    "rotation": c.rotation
+                }
+                arraypattern[p.pk].append(crossdict)
+    arraydict = dict(arraypattern)
+    print(arraydict)
     return render(request, 'animator.html', context={'elements': elements, 'animations': animations})
 
 
@@ -88,12 +88,6 @@ def setpattern(request):
     return HttpResponseRedirect(reverse('index'))
 
 
-def previewpattern(request):
-    if request.method == 'POST':
-        print("previewpattern")
-    return HttpResponseRedirect(reverse('index'))
-
-
 def deletepattern(request, pattern_id):
     pattern = Pattern.objects.get(pk=pattern_id)
     Cross.objects.filter(pattern=pattern).delete()
@@ -107,7 +101,6 @@ def savepattern(request):
         getpatterninfo = request.body.decode('utf-8')
         patterninfo = json.loads(getpatterninfo)
         patternname = patterninfo["name"]
-        print(patterninfo)
 
         checkDB = patterninfo["checkDB"]
 

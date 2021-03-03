@@ -8,7 +8,7 @@ class Animation(models.Model):
 
 class Pattern(models.Model):
     name = models.CharField(max_length=100)
-    # Relation to animation optional
+    # Relation to animation, optional
     animation = models.ForeignKey(Animation, blank=True, null=True, on_delete=models.CASCADE)
 
 

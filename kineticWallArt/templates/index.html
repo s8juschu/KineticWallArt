@@ -242,7 +242,6 @@
 
 <script>
     {% for key, values in array.items %}
-        {#console.log({{ key }});#}
         {% for v in values %}
             $("#{{ v.name }}preview{{key}}").css({"transform": "rotate({{ v.rotation }}deg)"});
             $("#arm1{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross1 }}"});
