@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="637a0353-6d26-4c3a-a082-ef9188b10da3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/btnScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/btnScript.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/animator.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/animator.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/modal.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/modal.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -123,7 +120,8 @@
       <workItem from="1614184686526" duration="549000" />
       <workItem from="1614333893416" duration="7249000" />
       <workItem from="1614449096793" duration="2371000" />
-      <workItem from="1614702649823" duration="6035000" />
+      <workItem from="1614702649823" duration="6192000" />
+      <workItem from="1614860380898" duration="3730000" />
     </task>
     <servers />
   </component>

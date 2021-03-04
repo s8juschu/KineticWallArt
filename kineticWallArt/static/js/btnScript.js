@@ -207,7 +207,22 @@ function saveFrame() {
     frame.push(pattern);
     frameId++;
 
-    console.log(frame);
+    document.getElementById("frameCounter").innerHTML= frameId.toString();
+}
 
-     document.getElementById("frameCounter").innerHTML= frameId.toString();
+function previewAnimation(pk) {
+    var results = [];
+
+    for (var j = 0; j < animations.length; j++){
+        results = animations.filter(x => x.animation === pk);
+    }
+
+    console.log(results);
+    for (var i = 0; i < results.length; i++){
+        var test = results[i];
+        console.log(test.pattern);
+        console.log(results[i]);
+        // results = animations.filter(x => x.animation === pk);
+    }
+
 }

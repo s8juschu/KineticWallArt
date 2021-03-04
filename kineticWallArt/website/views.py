@@ -30,7 +30,7 @@ def index(request):
             arraypattern[p.pk].append(crossdict)
     arraydict = dict(arraypattern)
     return render(request, 'index.html', context={'elements': elements, 'patterns': patterns, 'array': arraydict,
-                                                  'jsarray': json.dumps(arraydict), 'nbar': index})
+                                                  'jsarray': json.dumps(arraydict)})
 
 
 def animator(request):
@@ -38,14 +38,12 @@ def animator(request):
     elements = {"elem1", "elem2", "elem3", "elem4", "elem5", "elem6", "elem7", "elem8", "elem9"}
     animations = Animation.objects.all()
     for anim in animations:
-        print("animation "+str(anim.pk))
         patterns = Pattern.objects.filter(animation=anim)
         for p in patterns:
-            print("pattern "+str(p.pk))
             cross = Cross.objects.filter(pattern=p)
             for c in cross:
-                print("cross "+str(c.pk))
                 crossdict = {
+                    "pattern": p.pk,
                     "name": c.name,
                     "illumination": c.illumination,
                     "ill_cross1": c.ill_cross1,
@@ -58,10 +56,10 @@ def animator(request):
                     "color_cross4": c.color_cross4,
                     "rotation": c.rotation
                 }
-                arraypattern[p.pk].append(crossdict)
+                arraypattern[anim.pk].append(crossdict)
     arraydict = dict(arraypattern)
-    print(arraydict)
-    return render(request, 'animator.html', context={'elements': elements, 'animations': animations})
+    # print(arraydict)
+    return render(request, 'animator.html', context={'elements': elements, 'animations': animations, 'array': arraydict})
 
 
 def clear(request):

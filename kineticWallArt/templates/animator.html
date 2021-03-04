@@ -52,18 +52,18 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for ani in animations %}
+                                {% for img in animations %}
                                     <tr>
-                                        <td>{{ ani.name }}</td>
+                                        <td>{{ img.name }}</td>
                                         <td>
-                                            <button class="btn-icon-grey" id="previewanimation" data-toggle="modal" data-target="#previewModalAnimation{{ani.pk}}"><i class="fa fa-eye"></i></button>
+                                            <button class="btn-icon-grey" id="previewanimation" data-toggle="modal" data-target="#previewModalAnimation{{img.pk}}" onclick="previewAnimation({{ img.pk }})"><i class="fa fa-eye"></i></button>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="previewModalAnimation{{ani.pk}}" tabindex="-1" role="dialog" aria-labelledby="previewModalAnimationLabel{{ani.pk}}"
+                                            <div class="modal fade" id="previewModalAnimation{{img.pk}}" tabindex="-1" role="dialog" aria-labelledby="previewModalAnimationLabel{{img.pk}}"
                                                  aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered modal-size" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="previewModalAnimationLabel{{ani.pk}}">Preview "{{ani.name}}"</h5>
+                                                            <h5 class="modal-title" id="previewModalAnimationLabel{{img.pk}}">Preview "{{img.name}}"</h5>
                                                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">×</span>
                                                             </button>
@@ -76,20 +76,20 @@
                                                             </table>
                                                         </div>
                                                         <div class="modal-footer">
-{#                                                            <button class="btn-blue btn btn-sm" data-dismiss="modal" onclick="editAnimation({{ani.pk}}, '{{ani.name}}')">Edit</button>#}
+{#                                                            <button class="btn-blue btn btn-sm" data-dismiss="modal" onclick="editAnimation({{img.pk}}, '{{img.name}}')">Edit</button>#}
                                                             <button class="btn-red btn btn-sm" data-dismiss="modal">Close</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button class="btn-icon-blue" id="setanimation" data-toggle="modal" data-target="#setModalAnimation{{ani.pk}}"><i class="fa fa-share-square"></i></button>
+                                            <button class="btn-icon-blue" id="setanimation" data-toggle="modal" data-target="#setModalAnimation{{img.pk}}"><i class="fa fa-share-square"></i></button>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="setModalAnimation{{ani.pk}}" tabindex="-1" role="dialog" aria-labelledby="setModalAnimationLabel{{ani.pk}}"
+                                            <div class="modal fade" id="setModalAnimation{{img.pk}}" tabindex="-1" role="dialog" aria-labelledby="setModalAnimationLabel{{img.pk}}"
                                                  aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="deleteModalAnimationLabel{{ani.pk}}">Set animation</h5>
+                                                            <h5 class="modal-title" id="deleteModalAnimationLabel{{img.pk}}">Set imgmation</h5>
                                                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">×</span>
                                                             </button>
@@ -97,27 +97,27 @@
                                                         <div class="modal-body">
                                                             <p>To which image would you like to send the animation?</p>
                                                             <div>
-                                                                <select class="form-control" id="imageSelectAnimation{{ ani.pk }}">
+                                                                <select class="form-control" id="imageSelectAnimation{{ img.pk }}">
                                                                     <option value="1">Image 1</option>
                                                                     <option value="2">Image 2</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <button class="btn-green btn btn-sm" onclick="setAnimation({{ ani.pk }})" data-dismiss="modal">Upload</button>
+                                                            <button class="btn-green btn btn-sm" onclick="setAnimation({{ img.pk }})" data-dismiss="modal">Upload</button>
                                                             <button class="btn-red btn btn-sm" data-dismiss="modal">Close</button>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button class="btn-icon-red" id="deleteanimation" data-toggle="modal" data-target="#deleteModalAnimation{{ani.pk}}"><i class="fa fa-trash-alt"></i></button>
+                                            <button class="btn-icon-red" id="deleteanimation" data-toggle="modal" data-target="#deleteModalAnimation{{img.pk}}"><i class="fa fa-trash-alt"></i></button>
                                             <!-- Modal -->
-                                            <div class="modal fade" id="deleteModalAnimation{{ani.pk}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalAnimationLabel{{ani.pk}}"
+                                            <div class="modal fade" id="deleteModalAnimation{{img.pk}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalAnimationLabel{{img.pk}}"
                                                  aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="deleteModalAnimationLabel{{ani.pk}}">Delete</h5>
+                                                            <h5 class="modal-title" id="deleteModalAnimationLabel{{img.pk}}">Delete</h5>
                                                             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                                                 <span aria-hidden="true">×</span>
                                                             </button>
@@ -126,7 +126,7 @@
                                                             Are you sure you want to delete the animation?
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <a class="btn-green btn btn-sm" href="{% url 'deleteanimation' animation_id=ani.pk %}">Yes</a>
+                                                            <a class="btn-green btn btn-sm" href="{% url 'deleteanimation' animation_id=img.pk %}">Yes</a>
                                                             <button class="btn-red btn btn-sm" data-dismiss="modal">No</button>
                                                         </div>
                                                     </div>
@@ -226,20 +226,35 @@
 <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
 <script>
-{#    {% for key, values in array.items %}#}
-        {#console.log({{ key }});#}
-{#        {% for v in values %}#}
-{#            $("#{{ v.name }}preview{{key}}").css({"transform": "rotate({{ v.rotation }}deg)"});#}
-{#            $("#arm1{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross1 }}"});#}
-{#            $("#arm2{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross4 }}"});#}
-{#            $("#arm3{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross2 }}"});#}
-{#            $("#arm4{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross3 }}"});#}
-{#        {% endfor %}#}
-{#    {% endfor %}#}
+    var animations = [];
+    {% for key, values in array.items %}
+        {% for v in values %}
+            var cross = {};
+            cross.animation = {{ key }};
+            cross.pattern = {{ v.pattern }};
+            cross.name = "{{ v.name }}";
+            cross.color_cross1 = "{{ v.color_cross1 }}";
+            cross.color_cross2 = "{{ v.color_cross2 }}";
+            cross.color_cross3 = "{{ v.color_cross3 }}";
+            cross.color_cross4 = "{{ v.color_cross4 }}";
+            cross.illumination = "{{ v.illumination }}";
+            cross.ill_cross1 = "{{ v.ill_cross1 }}";
+            cross.ill_cross2 = "{{ v.ill_cross1 }}";
+            cross.ill_cross3 = "{{ v.ill_cross1 }}";
+            cross.ill_cross4 = "{{ v.ill_cross1 }}";
+            cross.rotation = {{ v.rotation }};
+            animations.push(cross);
+            {#$("#{{ v.name }}preview{{key}}").css({"transform": "rotate({{ v.rotation }}deg)"});#}
+            {#$("#arm1{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross1 }}"});#}
+            {#$("#arm2{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross4 }}"});#}
+            {#$("#arm3{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross2 }}"});#}
+            {#$("#arm4{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross3 }}"});#}
+        {% endfor %}
+    {% endfor %}
 
-    function editAnimation(pk, animname){
-       console.log("editAnim "+pk+animname)
-    }
+    {#function editAnimation(pk, animname){#}
+    {#   console.log("editAnim "+pk+animname)#}
+    {#}#}
 </script>
 
 </body>
