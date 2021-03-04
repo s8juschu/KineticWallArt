@@ -210,14 +210,21 @@ function saveFrame() {
     document.getElementById("frameCounter").innerHTML= frameId.toString();
 }
 
-function changeDisplay(){
-    console.log("test");
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
 
-    setTimeout(changeDisplay, 5000);
-}
+const awaitFunction = async (tmp, pk) => {
+    for (var l = 0; l < tmp.length; l++) {
+        $("#"+tmp[l].name+"preview"+pk).css({"transform": "rotate("+tmp[l].rotation+"deg)"});
+        $("#arm1"+tmp[l].name+"preview"+pk).css({"background-color": ""+tmp[l].color_cross1+""});
+        $("#arm2"+tmp[l].name+"preview"+pk).css({"background-color": ""+tmp[l].color_cross2+""});
+        $("#arm3"+tmp[l].name+"preview"+pk).css({"background-color": ""+tmp[l].color_cross3+""});
+        $("#arm4"+tmp[l].name+"preview"+pk).css({"background-color": ""+tmp[l].color_cross4+""});
+        console.log(tmp.length);
+    }
+    await sleep(1000);
+};
 
-
-function previewAnimation(pk) {
+async function previewAnimation(pk) {
     var results = [];
     var patterns = [];
 
@@ -225,31 +232,16 @@ function previewAnimation(pk) {
         results = animations.filter(x => x.animation === pk);
     }
 
-    // console.log(results);
     for (var i = 0; i < results.length; i++){
         var test = results[i];
         if(patterns.indexOf(test.pattern) === -1) {
             patterns.push(test.pattern);
         }
-        // console.log(test.pattern);
-        // console.log(results[i]);
-        // results = animations.filter(x => x.animation === pk);
     }
-    // console.log(patterns);
 
     for (var k = 0; k < patterns.length; k++){
-        var tmp= results.filter(x => x.pattern === patterns[k]);
-        for (var l = 0; l < tmp.length; l++) {
-            // console.log(tmp);
-            $("#"+tmp[l].name+"preview"+pk).css({"transform": "rotate("+tmp[l].rotation+"deg)"});
-            $("#arm1"+tmp[l].name+"preview"+pk).css({"background-color": ""+tmp[l].color_cross1+""});
-            $("#arm2"+tmp[l].name+"preview"+pk).css({"background-color": ""+tmp[l].color_cross2+""});
-            $("#arm3"+tmp[l].name+"preview"+pk).css({"background-color": ""+tmp[l].color_cross3+""});
-            $("#arm4"+tmp[l].name+"preview"+pk).css({"background-color": ""+tmp[l].color_cross4+""});
-        }
+        var tmp = results.filter(x => x.pattern === patterns[k]);
+        console.log(tmp);
+        await awaitFunction(tmp, pk);
     }
-
-
 }
-
-
