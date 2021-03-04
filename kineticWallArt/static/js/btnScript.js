@@ -216,9 +216,9 @@ const awaitFunction = async (tmp, pk) => {
     for (var l = 0; l < tmp.length; l++) {
         $("#"+tmp[l].name+"preview"+pk).css({"transform": "rotate("+tmp[l].rotation+"deg)"});
         $("#arm1"+tmp[l].name+"preview"+pk).css({"background-color": ""+tmp[l].color_cross1+""});
-        $("#arm2"+tmp[l].name+"preview"+pk).css({"background-color": ""+tmp[l].color_cross2+""});
-        $("#arm3"+tmp[l].name+"preview"+pk).css({"background-color": ""+tmp[l].color_cross3+""});
-        $("#arm4"+tmp[l].name+"preview"+pk).css({"background-color": ""+tmp[l].color_cross4+""});
+        $("#arm2"+tmp[l].name+"preview"+pk).css({"background-color": ""+tmp[l].color_cross4+""});
+        $("#arm3"+tmp[l].name+"preview"+pk).css({"background-color": ""+tmp[l].color_cross2+""});
+        $("#arm4"+tmp[l].name+"preview"+pk).css({"background-color": ""+tmp[l].color_cross3+""});
         console.log(tmp.length);
     }
     await sleep(1000);
