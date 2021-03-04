@@ -244,11 +244,6 @@
             cross.ill_cross4 = "{{ v.ill_cross1 }}";
             cross.rotation = {{ v.rotation }};
             animations.push(cross);
-            {#$("#{{ v.name }}preview{{key}}").css({"transform": "rotate({{ v.rotation }}deg)"});#}
-            {#$("#arm1{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross1 }}"});#}
-            {#$("#arm2{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross4 }}"});#}
-            {#$("#arm3{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross2 }}"});#}
-            {#$("#arm4{{ v.name }}preview{{key}}").css({"background-color": "{{ v.color_cross3 }}"});#}
         {% endfor %}
     {% endfor %}
 

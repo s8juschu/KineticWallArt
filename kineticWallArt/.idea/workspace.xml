@@ -4,8 +4,6 @@
     <list default="true" id="637a0353-6d26-4c3a-a082-ef9188b10da3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/btnScript.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/btnScript.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/animator.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/animator.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/website/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +119,7 @@
       <workItem from="1614333893416" duration="7249000" />
       <workItem from="1614449096793" duration="2371000" />
       <workItem from="1614702649823" duration="6192000" />
-      <workItem from="1614860380898" duration="3730000" />
+      <workItem from="1614860380898" duration="6086000" />
     </task>
     <servers />
   </component>
