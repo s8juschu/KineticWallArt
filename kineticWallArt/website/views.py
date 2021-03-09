@@ -144,17 +144,16 @@ def sendpattern(request):
     if request.method == 'POST':
         getpatterninfo = request.body.decode('utf-8')
         patterninfo = json.loads(getpatterninfo)
-        print(patterninfo)
         listitem = patterninfo["listarray"]
         for item in listitem:
             conn.send_on(x, 0, item["ill_cross1"])
             conn.send_on(x, 1, item["ill_cross2"])
             conn.send_on(x, 2, item["ill_cross3"])
             conn.send_on(x, 3, item["ill_cross4"])
-            conn.send_color(x, 0, item["ill_cross1"])
-            conn.send_color(x, 1, item["ill_cross2"])
-            conn.send_color(x, 2, item["ill_cross3"])
-            conn.send_color(x, 3, item["ill_cross4"])
+            conn.send_color(x, 0, item["color_cross1"])
+            conn.send_color(x, 1, item["color_cross2"])
+            conn.send_color(x, 2, item["color_cross3"])
+            conn.send_color(x, 3, item["color_cross4"])
             conn.send_angle(x, item["rotation"])
             x += 1
     return HttpResponseRedirect(reverse('index'))
