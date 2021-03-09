@@ -131,7 +131,7 @@ def setanimation(request):
     if request.method == 'POST':
         setanimationinfo = request.body.decode('utf-8')
         setanimation = json.loads(setanimationinfo)
-        print(setanimation)
+        print(setanimation["animation"])
         # TODO MQTT
     return HttpResponseRedirect(reverse('animator'))
 

@@ -104,7 +104,7 @@ function savePattern() {
 
 function setPattern(pk){
     var selected = $("#imageSelect"+pk+" :selected").val();
-    var text = '{ "image" : ' + selected + ', "pattern" : ' +pk+ '}';
+    var text = { "image" : selected , "pattern" : pk };
 
     xhr.open("POST", '/website/setpattern', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
@@ -157,7 +157,7 @@ function saveAnimation() {
 
 function setAnimation(pk){
     var selected = $("#imageSelectAnimation"+pk+" :selected").val();
-    var text = '{ "image" : ' + selected + ', "animation" : ' +pk+ '}';
+    var text = { "image" : selected , "animation" : pk };
 
     xhr.open("POST", '/website/setanimation', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
