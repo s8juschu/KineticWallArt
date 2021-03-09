@@ -1,3 +1,4 @@
+from website.MqTT import conn
 from django.http import HttpResponseRedirect
 from django.shortcuts import reverse, render
 from django.views.decorators.csrf import csrf_exempt
@@ -75,13 +76,26 @@ def sync(request):
         # TODO MQTT
     return HttpResponseRedirect(reverse('index'))
 
-
 @csrf_exempt
 def setpattern(request):
+    x = 1
     if request.method == 'POST':
         setpatterninfo = request.body.decode('utf-8')
         setpattern = json.loads(setpatterninfo)
-        print(setpattern)
+        pattern_id = setpattern["pattern"]
+        pattern = Pattern.objects.get(pk=pattern_id)
+        crosses = Cross.objects.filter(pattern=pattern)
+        for cross in crosses:
+            conn.send_on(x,0,cross.ill_cross1)
+            conn.send_on(x,1,cross.ill_cross2)
+            conn.send_on(x,2,cross.ill_cross3)
+            conn.send_on(x,3,cross.ill_cross4)
+            conn.send_color(x,0,cross.color_cross1)
+            conn.send_color(x,1,cross.color_cross2)
+            conn.send_color(x,2,cross.color_cross3)
+            conn.send_color(x,3,cross.color_cross4)
+            conn.send_angle(x, cross.rotation)
+            x += 1
         # TODO MQTT
     return HttpResponseRedirect(reverse('index'))
 
