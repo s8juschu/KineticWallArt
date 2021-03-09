@@ -216,6 +216,33 @@
                                     </div>
                                 </div>
                             </div>
+                            <button class="btn-blue btn btn-sm" data-toggle="modal" data-target="#sendModal">Send</button>
+                            <!-- Modal -->
+                            <div class="modal fade" id="sendModal" tabindex="-1" role="dialog" aria-labelledby="sendModalTitel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="sendModalTitle">Set pattern</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>To which image would you like to send the pattern?</p>
+                                            <div>
+                                                <select class="form-control" id="sendimageSelect">
+                                                    <option value="1">Image 1</option>
+                                                    <option value="2">Image 2</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn-green btn btn-sm" onclick="sendPattern()" data-dismiss="modal">Upload</button>
+                                            <button class="btn-red btn btn-sm" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <table id="crosstable" class="table table-bordered">
                             <tbody>

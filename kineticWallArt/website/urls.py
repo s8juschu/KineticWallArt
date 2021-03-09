@@ -17,4 +17,6 @@ urlpatterns = [
     path('setanimation', views.setanimation, name='setanimation'),
     path('deleteanimation/<int:animation_id>', views.deleteanimation, name='deleteanimation'),
     path('saveanimation', views.saveanimation, name='saveanimation'),
+
+    path('sendpattern', views.sendpattern, name='sendpattern'),
 ]

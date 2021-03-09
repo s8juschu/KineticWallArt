@@ -59,7 +59,6 @@ def animator(request):
                 }
                 arraypattern[anim.pk].append(crossdict)
     arraydict = dict(arraypattern)
-    # print(arraydict)
     return render(request, 'animator.html', context={'elements': elements, 'animations': animations, 'array': arraydict})
 
 
@@ -96,7 +95,6 @@ def setpattern(request):
             conn.send_color(x,3,cross.color_cross4)
             conn.send_angle(x, cross.rotation)
             x += 1
-        # TODO MQTT
     return HttpResponseRedirect(reverse('index'))
 
 
@@ -138,6 +136,30 @@ def savepattern(request):
             cross.pattern = pattern
             cross.save()
     return HttpResponseRedirect(reverse('index'))
+
+
+@csrf_exempt
+def sendpattern(request):
+    x = 1
+    if request.method == 'POST':
+        getpatterninfo = request.body.decode('utf-8')
+        patterninfo = json.loads(getpatterninfo)
+        print(patterninfo)
+        listitem = patterninfo["listarray"]
+        for item in listitem:
+            print(item["rotation"])
+            # conn.send_on(x, 0, item["ill_cross1"])
+            # conn.send_on(x, 1, item["ill_cross2"])
+            # conn.send_on(x, 2, item["ill_cross3"])
+            # conn.send_on(x, 3, item["ill_cross4"])
+            # conn.send_color(x, 0, item["ill_cross1"])
+            # conn.send_color(x, 1, item["ill_cross2"])
+            # conn.send_color(x, 2, item["ill_cross3"])
+            # conn.send_color(x, 3, item["ill_cross4"])
+            # conn.send_angle(x, item["rotation"])
+            x += 1
+    return HttpResponseRedirect(reverse('index'))
+
 
 
 @csrf_exempt

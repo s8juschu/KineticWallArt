@@ -111,6 +111,60 @@ function setPattern(pk){
     xhr.send(JSON.stringify(text));
 }
 
+function sendPattern() {
+    //Save values of modal
+    var pattern = {};
+    pattern.listarray = [];
+
+    pattern.name = document.getElementById("inputPatternName").value;
+    pattern.checkDB = document.getElementById("inputPatternID").value;
+
+    for (let x=0; x<elements.length; x++) {
+        var id = elements[x];
+        var cross = {};
+        var radios = document.getElementsByName('lightradio'+id);
+        var selected_radio;
+
+        for (var i = 0, length = radios.length; i < length; i++) {
+            if (radios[i].checked) {
+                selected_radio = radios[i].value;
+                break;
+            }
+        }
+
+        cross.name = id;
+        cross.color_cross1 = document.getElementById("picker1"+id).value;
+        cross.color_cross2 = document.getElementById("picker2"+id).value;
+        cross.color_cross3 = document.getElementById("picker3"+id).value;
+        cross.color_cross4 = document.getElementById("picker4"+id).value;
+        cross.illumination = selected_radio;
+        cross.ill_cross1 = document.getElementById("check1"+id).checked;
+        cross.ill_cross2 = document.getElementById("check2"+id).checked;
+        cross.ill_cross3 = document.getElementById("check3"+id).checked;
+        cross.ill_cross4 = document.getElementById("check4"+id).checked;
+
+        var elem = document.getElementById(id);
+        var rotation = getCurrentRotation(elem);
+
+        if(rotation === ""){
+            rotation = "0";
+        }
+        cross.rotation = rotation;
+
+        pattern.listarray.push(cross);
+    }
+
+    xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200)
+       {
+            location.reload(true);
+       }
+    };
+    xhr.open("POST", '/website/sendpattern', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify(pattern));
+}
+
 function resetModal(id){
     document.querySelector("#picker1"+id).jscolor.fromString('ffffff');
     document.querySelector("#picker2"+id).jscolor.fromString('ffffff');
