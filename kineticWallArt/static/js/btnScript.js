@@ -157,7 +157,7 @@ function saveAnimation() {
 
 function setAnimation(pk){
     var selected = $("#imageSelectAnimation"+pk+" :selected").val();
-    var text = '{ "image" : ' + selected + ', "pattern" : ' +pk+ '}';
+    var text = '{ "image" : ' + selected + ', "animation" : ' +pk+ '}';
 
     xhr.open("POST", '/website/setanimation', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
