@@ -2,8 +2,8 @@
 
 ## Install Colorfield: 
 
-pip install django-colorfield
+pip3 install django-colorfield
 
 ## Run Frontend:
 
-python manage.py runserver
+python3 manage.py runserver
