@@ -156,7 +156,7 @@ def sendpattern(request):
             conn.send_color(x, 3, item["color_cross4"])
             conn.send_angle(x, item["rotation"])
             x += 1
-    return HttpResponseRedirect(reverse('index'))
+    return HttpResponseRedirect('')
 
 
 
