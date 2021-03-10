@@ -115,6 +115,7 @@ function sendPattern() {
     //Save values of modal
     var pattern = {};
     pattern.listarray = [];
+    pattern.image = document.getElementById("sendimageSelect").value;
 
     pattern.name = document.getElementById("inputPatternName").value;
     pattern.checkDB = document.getElementById("inputPatternID").value;

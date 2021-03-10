@@ -82,18 +82,23 @@ def setpattern(request):
         setpatterninfo = request.body.decode('utf-8')
         setpattern = json.loads(setpatterninfo)
         pattern_id = setpattern["pattern"]
+        image_id = setpattern["image"]
         pattern = Pattern.objects.get(pk=pattern_id)
         crosses = Cross.objects.filter(pattern=pattern)
+        if image_id == 1:
+            connection = image1_conn
+        else:
+            connection = image2_conn
         for cross in crosses:
-            image1_conn.send_on(x,0,cross.ill_cross1)
-            image1_conn.send_on(x,1,cross.ill_cross2)
-            image1_conn.send_on(x,2,cross.ill_cross3)
-            image1_conn.send_on(x,3,cross.ill_cross4)
-            image1_conn.send_color(x,0,cross.color_cross1)
-            image1_conn.send_color(x,1,cross.color_cross2)
-            image1_conn.send_color(x,2,cross.color_cross3)
-            image1_conn.send_color(x,3,cross.color_cross4)
-            image1_conn.send_angle(x, cross.rotation)
+            connection.send_on(x,0,cross.ill_cross1)
+            connection.send_on(x,1,cross.ill_cross2)
+            connection.send_on(x,2,cross.ill_cross3)
+            connection.send_on(x,3,cross.ill_cross4)
+            connection.send_color(x,0,cross.color_cross1)
+            connection.send_color(x,1,cross.color_cross2)
+            connection.send_color(x,2,cross.color_cross3)
+            connection.send_color(x,3,cross.color_cross4)
+            connection.send_angle(x, cross.rotation)
             x += 1
     return HttpResponseRedirect(reverse('index'))
 
@@ -145,16 +150,21 @@ def sendpattern(request):
         getpatterninfo = request.body.decode('utf-8')
         patterninfo = json.loads(getpatterninfo)
         listitem = patterninfo["listarray"]
+        image_id = patterninfo["image"]
+        if image_id == 1:
+            connection = image1_conn
+        else:
+            connection = image2_conn
         for item in listitem:
-            image1_conn.send_on(x, 0, item["ill_cross1"])
-            image1_conn.send_on(x, 1, item["ill_cross2"])
-            image1_conn.send_on(x, 2, item["ill_cross3"])
-            image1_conn.send_on(x, 3, item["ill_cross4"])
-            image1_conn.send_color(x, 0, item["color_cross1"])
-            image1_conn.send_color(x, 1, item["color_cross2"])
-            image1_conn.send_color(x, 2, item["color_cross3"])
-            image1_conn.send_color(x, 3, item["color_cross4"])
-            image1_conn.send_angle(x, item["rotation"])
+            connection.send_on(x, 0, item["ill_cross1"])
+            connection.send_on(x, 1, item["ill_cross2"])
+            connection.send_on(x, 2, item["ill_cross3"])
+            connection.send_on(x, 3, item["ill_cross4"])
+            connection.send_color(x, 0, item["color_cross1"])
+            connection.send_color(x, 1, item["color_cross2"])
+            connection.send_color(x, 2, item["color_cross3"])
+            connection.send_color(x, 3, item["color_cross4"])
+            connection.send_angle(x, item["rotation"])
             x += 1
     return HttpResponseRedirect('')
 
