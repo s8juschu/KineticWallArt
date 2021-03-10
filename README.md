@@ -1,5 +1,9 @@
 # KineticWallArt
 
+## Install Django
+
+pip3 install Django
+
 ## Install Paho
 
 pip3 install paho-mqtt
