@@ -3,27 +3,28 @@ import paho.mqtt.client as mqtt
 from time import sleep
 
 class Connection():
-	client = mqtt.Client()
-	connected = False
-
-	def __init__(self, addr):
-		print("Connecting to MqTT Broker")
-		self.client.on_connect = Connection.on_connect
-		self.client.on_message = Connection.on_message
+	def __init__(self, addr, port=1883):
+		print("Connecting to MqTT Broker at port: "+ str(port))
+		self.client = mqtt.Client()
+		self.connected = False
+		self.client.on_connect = self.on_connect
+		self.client.on_message = self.on_message
+		self.host = addr
+		self.port = port
 		try:
-			self.client.connect(addr)
+			self.client.connect(addr, port)
 			self.connected = True
 		except Exception as e:
 			print("MqTT Connection Error:")
 			print(e)
 
-	def on_message(client, userdata, message):
+	def on_message(self, client, userdata, message):
 		msg = bytes(message.payload)
 		print("message received: ", message)
 		print("message topic: ", message.topic)
 
-	def on_connect(client, userdata, flags, rc):
-		print("MqTT Connection Established!")
+	def on_connect(self, client, userdata, flags, rc):
+		print("MqTT Connection Established to "+self.host+":"+str(self.port)+"!")
 		
 
 	def int_to_bytes(x):
@@ -52,4 +53,5 @@ class Connection():
 			return
 		self.client.loop_start()
 
-conn = Connection("localhost")
+image1_conn = Connection("localhost")
+image2_conn = Connection("localhost", 1884)

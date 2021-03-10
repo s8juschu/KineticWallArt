@@ -1,3 +1,4 @@
-from website.MqTT import conn
+from website.MqTT import image1_conn, image2_conn
 
-conn.handle()
+image1_conn.handle()
+image2_conn.handle()

@@ -1,4 +1,4 @@
-from website.MqTT import conn
+from website.MqTT import image1_conn, image2_conn
 from django.http import HttpResponseRedirect
 from django.shortcuts import reverse, render
 from django.views.decorators.csrf import csrf_exempt
@@ -85,15 +85,15 @@ def setpattern(request):
         pattern = Pattern.objects.get(pk=pattern_id)
         crosses = Cross.objects.filter(pattern=pattern)
         for cross in crosses:
-            conn.send_on(x,0,cross.ill_cross1)
-            conn.send_on(x,1,cross.ill_cross2)
-            conn.send_on(x,2,cross.ill_cross3)
-            conn.send_on(x,3,cross.ill_cross4)
-            conn.send_color(x,0,cross.color_cross1)
-            conn.send_color(x,1,cross.color_cross2)
-            conn.send_color(x,2,cross.color_cross3)
-            conn.send_color(x,3,cross.color_cross4)
-            conn.send_angle(x, cross.rotation)
+            image1_conn.send_on(x,0,cross.ill_cross1)
+            image1_conn.send_on(x,1,cross.ill_cross2)
+            image1_conn.send_on(x,2,cross.ill_cross3)
+            image1_conn.send_on(x,3,cross.ill_cross4)
+            image1_conn.send_color(x,0,cross.color_cross1)
+            image1_conn.send_color(x,1,cross.color_cross2)
+            image1_conn.send_color(x,2,cross.color_cross3)
+            image1_conn.send_color(x,3,cross.color_cross4)
+            image1_conn.send_angle(x, cross.rotation)
             x += 1
     return HttpResponseRedirect(reverse('index'))
 
@@ -146,15 +146,15 @@ def sendpattern(request):
         patterninfo = json.loads(getpatterninfo)
         listitem = patterninfo["listarray"]
         for item in listitem:
-            conn.send_on(x, 0, item["ill_cross1"])
-            conn.send_on(x, 1, item["ill_cross2"])
-            conn.send_on(x, 2, item["ill_cross3"])
-            conn.send_on(x, 3, item["ill_cross4"])
-            conn.send_color(x, 0, item["color_cross1"])
-            conn.send_color(x, 1, item["color_cross2"])
-            conn.send_color(x, 2, item["color_cross3"])
-            conn.send_color(x, 3, item["color_cross4"])
-            conn.send_angle(x, item["rotation"])
+            image1_conn.send_on(x, 0, item["ill_cross1"])
+            image1_conn.send_on(x, 1, item["ill_cross2"])
+            image1_conn.send_on(x, 2, item["ill_cross3"])
+            image1_conn.send_on(x, 3, item["ill_cross4"])
+            image1_conn.send_color(x, 0, item["color_cross1"])
+            image1_conn.send_color(x, 1, item["color_cross2"])
+            image1_conn.send_color(x, 2, item["color_cross3"])
+            image1_conn.send_color(x, 3, item["color_cross4"])
+            image1_conn.send_angle(x, item["rotation"])
             x += 1
     return HttpResponseRedirect('')
 
