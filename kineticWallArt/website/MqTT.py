@@ -12,6 +12,7 @@ class Connection():
 		self.client.on_message = Connection.on_message
 		try:
 			self.client.connect(addr)
+			self.connected = True
 		except Exception as e:
 			print("MqTT Connection Error:")
 			print(e)
@@ -23,7 +24,7 @@ class Connection():
 
 	def on_connect(client, userdata, flags, rc):
 		print("MqTT Connection Established!")
-		connected = True
+		
 
 	def int_to_bytes(x):
 		return int(x).to_bytes(2, byteorder='little', signed=False)
