@@ -1,5 +1,9 @@
 # KineticWallArt
 
+## Install Paho
+
+pip3 install paho-mqtt
+
 ## Install Colorfield: 
 
 pip3 install django-colorfield
