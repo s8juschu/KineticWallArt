@@ -85,7 +85,7 @@ def setpattern(request):
         image_id = setpattern["image"]
         pattern = Pattern.objects.get(pk=pattern_id)
         crosses = Cross.objects.filter(pattern=pattern)
-        if image_id == 1:
+        if int(image_id) == 1:
             connection = image1_conn
         else:
             connection = image2_conn
@@ -151,7 +151,7 @@ def sendpattern(request):
         patterninfo = json.loads(getpatterninfo)
         listitem = patterninfo["listarray"]
         image_id = patterninfo["image"]
-        if image_id == 1:
+        if int(image_id) == 1:
             connection = image1_conn
         else:
             connection = image2_conn
