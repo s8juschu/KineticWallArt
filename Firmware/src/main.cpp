@@ -6,11 +6,8 @@
 #include <LED.h>
 #include <Touch_Control.h>
 #include <State.h>
+#include <ServoController.h>
 
-int lastTriggerState = 0;
-int currentTriggerState = 0;
-
-Servo myservo;
 State cross;
 
 void led_touched(int cap);
@@ -50,13 +47,7 @@ void test_obsrv(StateChange change){
       break;
     case ANGLE:
       
-      if(angle > 0 && angle < 180){
-        myservo.write(80);
-      } else if(angle >= 180) {
-        myservo.write(100);
-      }
-      delay(1000);
-      myservo.write(90);
+      rotate_to(angle);
       break;
     default:
       break;
@@ -73,17 +64,11 @@ void setup(){
   ota_setup();
   Connection.setup();
   cross.register_incoming_observer(test_obsrv);
-
   
   touch.setup();
-  //attention: trigger is LOW active!
-  pinMode(D7, INPUT);
-  digitalWrite(D7, HIGH);
-  Debug.println("Init done... attaching Servo and go!");
 
-  myservo.attach(D3);
-  delay(500);   // delay before servo gets in init position (just while testing on prototype)
-  myservo.write(90);
+  setup_servo();
+  Debug.println("Init done...");
 }
 
 void update_leds(){
@@ -99,28 +84,22 @@ void loop(){
   Connection.loop();
   touch.loop();
   update_leds();
-  
-  currentTriggerState = digitalRead(D7);
+  loop_servo();
 
-  if(!currentTriggerState && lastTriggerState) Serial.println("++ trigger ++");
-
-  lastTriggerState = currentTriggerState;
   delay(100);
 }
 
 void pad_touched(int side){
   if (side % 2 == 0){
-    // Serial.println("CW!");
-    myservo.write(80);
+    rotate_cw();
   }
   else {
-    // Serial.println("CCW!");
-    myservo.write(100);
+    rotate_ccw();
   }
 }
 
 void pad_released(int side){
-  myservo.write(90);
+  stop_servo();
 }
 
 void arm_touched(int arm){
